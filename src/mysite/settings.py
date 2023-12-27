@@ -26,7 +26,7 @@ SECRET_KEY = os.environ.get("SECRET_KEY")
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = os.environ.get("DEBUG", default=False)
 
-ALLOWED_HOSTS = os.environ.get("ALLOWED_HOSTS").split(",")
+ALLOWED_HOSTS = os.environ.get("ALLOWED_HOSTS", default="*").split(",")
 
 
 # Application definition
@@ -38,6 +38,7 @@ INSTALLED_APPS = [
     "django.contrib.sessions",
     "django.contrib.messages",
     "django.contrib.staticfiles",
+    "polls.apps.PollsConfig",
 ]
 
 MIDDLEWARE = [
@@ -133,4 +134,4 @@ EMAIL_HOST = os.environ.get("EMAIL_HOST", default="mailpit")
 EMAIL_PORT = os.environ.get("EMAIL_PORT", default=1025)
 EMAIL_HOST_USER = os.environ.get("EMAIL_HOST_USER", default=None)
 EMAIL_HOST_PASSWORD = os.environ.get("EMAIL_HOST_PASSWORD", default=None)
-EMAIL_USE_TLS = os.environ.get("EMAIL_USE_TLS", default=False)
+# EMAIL_USE_TLS = os.environ.get("EMAIL_USE_TLS", default=False)
