@@ -18,6 +18,7 @@ help:
 	@echo "  make down            - Stop and remove the Docker containers"
 	@echo "  make migrate         - Run Django database migrations"
 	@echo "  make makemigrations  - Run Module migrations to apply changes to Database"
+	@echo "  make test            - Run TestCases for Apps"
 	@echo "  make createsuperuser - Create a Django superuser"
 	@echo "  make logs            - View Docker container logs"
 	@echo "  make clean           - Remove Docker volumes and network"
@@ -50,6 +51,11 @@ migrate:
 .PHONY: makemigrations
 makemigrations:
 	$(DOCKER_COMPOSE) exec $(WEB_SERVICE) python manage.py makemigrations $(app)
+
+# Run TestCases for Apps
+.PHONY: test
+test:
+	$(DOCKER_COMPOSE) exec $(WEB_SERVICE) python manage.py test $(app)
 
 # Create a Django superuser
 .PHONY: createsuperuser
