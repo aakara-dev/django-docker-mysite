@@ -18,6 +18,7 @@ help:
 	@echo "  make down            - Stop and remove the Docker containers"
 	@echo "  make migrate         - Run Django database migrations"
 	@echo "  make makemigrations  - Run Module migrations to apply changes to Database"
+	@echo "  make collectstatic   - Collect static files in a consolidated location"
 	@echo "  make test            - Run TestCases for Apps"
 	@echo "  make createsuperuser - Create a Django superuser"
 	@echo "  make logs            - View Docker container logs"
@@ -51,6 +52,11 @@ migrate:
 .PHONY: makemigrations
 makemigrations:
 	$(DOCKER_COMPOSE) exec $(WEB_SERVICE) python manage.py makemigrations $(app)
+
+# Collect static files in a consolidated location
+.PHONY: collectstatic
+collectstatic:
+	$(DOCKER_COMPOSE) exec $(WEB_SERVICE) python manage.py collectstatic
 
 # Run TestCases for Apps
 .PHONY: test
